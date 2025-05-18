@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/T-Prohmpossadhorn/go-core/logger"
+	logger "github.com/T-Prohmpossadhorn/go-core-logger"
 	"github.com/stretchr/testify/require"
 )
 

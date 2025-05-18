@@ -4,10 +4,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/T-Prohmpossadhorn/go-core/config"
-	"github.com/T-Prohmpossadhorn/go-core/httpc"
-	"github.com/T-Prohmpossadhorn/go-core/logger"
-	"github.com/T-Prohmpossadhorn/go-core/otel"
+	config "github.com/T-Prohmpossadhorn/go-core-config"
+	httpc "github.com/T-Prohmpossadhorn/go-core-httpc"
+	logger "github.com/T-Prohmpossadhorn/go-core-logger"
+	otel "github.com/T-Prohmpossadhorn/go-core-otel"
 )
 
 // User defines the structure for user data

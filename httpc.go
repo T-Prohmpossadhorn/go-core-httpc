@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/T-Prohmpossadhorn/go-core/config"
-	"github.com/T-Prohmpossadhorn/go-core/logger"
+	config "github.com/T-Prohmpossadhorn/go-core-config"
+	logger "github.com/T-Prohmpossadhorn/go-core-logger"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"github.com/google/uuid"

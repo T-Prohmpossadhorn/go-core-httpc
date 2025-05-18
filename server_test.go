@@ -7,8 +7,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/T-Prohmpossadhorn/go-core/config"
-	"github.com/T-Prohmpossadhorn/go-core/logger"
+	config "github.com/T-Prohmpossadhorn/go-core-config"
+	logger "github.com/T-Prohmpossadhorn/go-core-logger"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/T-Prohmpossadhorn/go-core/logger"
+	logger "github.com/T-Prohmpossadhorn/go-core-logger"
 )
 
 // getServiceInfo extracts method information from a service

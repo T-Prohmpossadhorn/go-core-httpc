@@ -6,8 +6,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/T-Prohmpossadhorn/go-core/config"
-	"github.com/T-Prohmpossadhorn/go-core/logger"
+	config "github.com/T-Prohmpossadhorn/go-core-config"
+	logger "github.com/T-Prohmpossadhorn/go-core-logger"
 )
 
 // setupServer creates a test server with the given configuration, service, and prefix
