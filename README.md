@@ -25,6 +25,7 @@ The `httpc` package is a Gin-based HTTP server and client for Go applications, p
 - **Complex JSON Support**: Handles nested JSON payloads with strict validation using `github.com/go-playground/validator/v10@v10.26.0`, enforcing required fields, length constraints, and custom rules.
 - **Healthcheck**: `/health` endpoint returning `200 OK` with `{"status":"healthy"}`.
 - **Swagger Documentation**: Generates OpenAPI 3.0.3 JSON at `/api/docs/swagger.json` for registered endpoints, reflecting service methods and schemas.
+- **Swagger UI**: Provides an interactive UI at `/api/docs/index.html` that dynamically loads the generated Swagger JSON.
 - **Mandatory Integration**: Uses `config` for settings and `logger` for request logging with structured JSON output.
 - **Optional Tracing**: Supports `go.opentelemetry.io/otel@v1.24.0` for request tracing when enabled, for both server and client.
 - **Graceful Shutdown**: Supports graceful server shutdown via `Shutdown` method, handling active connections with a configurable timeout.
@@ -284,7 +285,7 @@ curl http://localhost:8080/health
 ```
 
 ### OpenAPI Documentation
-Access the OpenAPI 3.0.3 JSON at `http://localhost:8080/api/docs/swagger.json` to explore the API. The dynamically generated documentation reflects service methods, schemas, and validation rules.
+Access the OpenAPI 3.0.3 JSON at `http://localhost:8080/api/docs/swagger.json` to explore the API or visit `http://localhost:8080/api/docs/index.html` for the Swagger UI. The dynamically generated documentation reflects service methods, schemas, and validation rules.
 
 Example:
 ```bash

@@ -2,6 +2,7 @@ package httpc
 
 import (
 	"encoding/json"
+	"io"
 	"net/http"
 	"os"
 	"testing"
@@ -88,5 +89,18 @@ func TestSwagger(t *testing.T) {
 		require.True(t, ok)
 		require.Contains(t, properties, "name")
 		require.Contains(t, properties, "email")
+	})
+
+	t.Run("Swagger UI Endpoint", func(t *testing.T) {
+		svc := &TestService{}
+		ts := setupServer(t, serverCfg, svc, "/v1")
+		defer ts.Close()
+
+		resp, err := http.Get(ts.URL + "/api/docs/index.html")
+		require.NoError(t, err)
+		require.Equal(t, http.StatusOK, resp.StatusCode)
+		body, err := io.ReadAll(resp.Body)
+		require.NoError(t, err)
+		require.Contains(t, string(body), "Swagger UI")
 	})
 }
