@@ -18,6 +18,23 @@ import (
 	"github.com/google/uuid"
 )
 
+const swaggerUIHTML = `<!DOCTYPE html>
+<html>
+<head>
+    <title>Swagger UI</title>
+    <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist/swagger-ui.css" />
+</head>
+<body>
+    <div id="swagger-ui"></div>
+    <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
+    <script>
+    window.onload = function() {
+        SwaggerUIBundle({url: '/api/docs/swagger.json', dom_id: '#swagger-ui'});
+    }
+    </script>
+</body>
+</html>`
+
 type ServerConfig struct {
 	OtelEnabled bool `json:"otel_enabled" default:"false"`
 	Port        int  `json:"port" default:"8080" required:"true" validate:"gt=0,lte=65535"`
@@ -74,6 +91,9 @@ func NewServer(c *config.Config) (*Server, error) {
 	engine.GET("/api/docs/swagger.json", func(c *gin.Context) {
 		c.JSON(http.StatusOK, server.swagger)
 	})
+	engine.GET("/api/docs/index.html", func(c *gin.Context) {
+		c.Data(http.StatusOK, "text/html; charset=utf-8", []byte(swaggerUIHTML))
+	})
 
 	logger.Info("Registering health and Swagger endpoints")
 	return server, nil
@@ -127,8 +147,9 @@ func (s *Server) registerMethods(methods []MethodInfo, cfg *serviceConfig, svc i
 		switch strings.ToUpper(m.HTTPMethod) {
 		case http.MethodGet:
 			s.engine.GET(path, s.handleMethod(m))
-		case http.MethodPost, http.MethodPut, http.MethodDelete:
-			s.engine.Handle(m.HTTPMethod, path, s.handleMethod(m))
+		case http.MethodPost, http.MethodPut, http.MethodDelete,
+			http.MethodPatch, http.MethodOptions, http.MethodHead:
+			s.engine.Handle(strings.ToUpper(m.HTTPMethod), path, s.handleMethod(m))
 		default:
 			logger.Warn("Skipping invalid HTTP method", logger.String("method", m.HTTPMethod))
 			continue
